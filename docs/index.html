@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaKu - Smart Expense Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Variables */
+        :root {
+            --bg-color: #0b1120;
+            --surface-color: #151e32;
+            --primary-color: #2ad4c5; /* Cyan/Teal aksen */
+            --primary-hover: #1fb9ab;
+            --text-light: #ffffff;
+            --text-muted: #94a3b8;
+            --glow-effect: 0 0 20px rgba(42, 212, 197, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(11, 17, 32, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: var(--glow-effect);
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: var(--primary-color);
+        }
+
+        .btn-download {
+            background-color: var(--primary-color);
+            color: #000;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: var(--glow-effect);
+        }
+
+        .btn-download:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(42, 212, 197, 0.6);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 150px 5% 80px;
+            min-height: 100vh;
+            gap: 40px;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: right;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), var(--glow-effect);
+            border: 1px solid rgba(42, 212, 197, 0.2);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 5%;
+            background-color: var(--surface-color);
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .features > p {
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .showcase-image {
+            max-width: 100%;
+            margin-bottom: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background-color: rgba(11, 17, 32, 0.6);
+            padding: 30px 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(42, 212, 197, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--glow-effect);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 5%;
+            background-color: #060913;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 120px;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-image {
+                margin-top: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 20px;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .btn-download {
+                padding: 8px 18px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="app_icon.png" alt="Ikon CaKu">
+            <div class="logo-text">CaKu<span>.</span></div>
+        </div>
+        <a href="#download" class="btn-download">Unduh Sekarang</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Smart Expense Tracker.</h1>
+            <p>Atur keuangan Anda, analisis pengeluaran visual, dan personalisasikan kategori keuangan Anda dengan mudah menggunakan CaKu (Catatan Saku).</p>
+            <a href="#download" class="btn-download" style="padding: 15px 30px; font-size: 1.1rem;">Mulai Kelola Keuangan</a>
+        </div>
+        <div class="hero-image">
+            <img src="Feature.png" alt="Fitur CaKu Banner">
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Fitur Unggulan CaKu</h2>
+        <p>Aplikasi pencatat keuangan pintar dengan desain modern dan fitur terlengkap untuk memudahkan hidup Anda.</p>
+        
+        <img src="Phone.png" alt="Tangkapan Layar Aplikasi CaKu" class="showcase-image">
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Lihat Keuangan Sekilas</h3>
+                <p>Pantau total pengeluaran dan pemasukan Anda langsung dari halaman utama dengan ringkasan yang jelas.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Analisis Visual Detail</h3>
+                <p>Pahami kebiasaan belanja Anda melalui grafik interaktif dan analisis pengeluaran mingguan/bulanan.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Kategori Personal</h3>
+                <p>Tambahkan, sesuaikan, dan kelola kategori baru dengan pilihan warna dan ikon unik sesuai selera Anda.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧾</div>
+                <h3>Scan Struk & Input Mudah</h3>
+                <p>Pilih metode input manual yang cepat atau gunakan fitur scan struk otomatis dengan teknologi canggih.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 CaKu - Catatan Saku. Hak Cipta Dilindungi.</p>
+    </footer>
+
+</body>
+</html>
